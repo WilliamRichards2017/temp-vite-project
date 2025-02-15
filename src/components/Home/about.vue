@@ -335,9 +335,9 @@ li > a, ul > li {
   border-right: 0.15em solid black;
   white-space: nowrap;
   font-size: 1.6rem;
-  width: 0;
+  width: 0.15em;
   animation: 
-    typing 2.5s steps(32, end) forwards,
+    typing 2s steps(32, end) forwards,
     blink-cursor 0.7s step-end infinite,
     hide-cursor 5s forwards;
 }
@@ -358,6 +358,7 @@ li > a, ul > li {
 
 .signature-container {
   display: inline-block;
+  width: fit-content;
 }
 
 .signature {
@@ -365,11 +366,10 @@ li > a, ul > li {
   color: #2a2a2a;
   letter-spacing: 2px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-  position: relative;
+  /* position: relative; */
   display: inline-block;
-  padding: 0 15px;
+  /* padding: 0 15px; */
   opacity: 0.9;
-  margin-left:  0.15em;
   font-size: 2.2rem;
 }
 
