@@ -112,6 +112,14 @@
       </div>
     </section>
 
+    <section class="section">
+
+
+
+    <side-projects/>
+
+    </section>
+
     <!-- Education -->
     <section class="section">
       <h1 class="section-title">Education</h1>
@@ -125,6 +133,19 @@
     
   </div>
 </template>
+
+
+<script>
+
+import SideProjects from './../SideProjects/SideProjects.vue';
+
+export default {
+  
+    components: {
+        SideProjects
+    }
+};
+</script>
 
 <style>
 .container {

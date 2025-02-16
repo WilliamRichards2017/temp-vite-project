@@ -1,6 +1,6 @@
 <template>
   <div class="side-projects">
-    <h2>Projects</h2>
+    <h1 class="section-title">Projects</h1>
     <div class="project-grid">
       <router-link 
         v-for="project in projects"
@@ -26,6 +26,7 @@
 import projects from './../../config/projects'
 
 export default {
+  
   data() {
     return {
       projects
@@ -58,6 +59,7 @@ export default {
 
 .project-card:hover {
   transform: translateY(-5px);
+  color: white !important
 }
 
 .card-overlay {
@@ -79,7 +81,7 @@ export default {
   position: relative;
   z-index: 1;
   padding: 1.5rem;
-  height: 100%;
+  height: calc(100% - 2.5rem);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;

@@ -5,6 +5,7 @@
 <script>
 
     import teamData from './data/fifa-matches-2018.js'
+    import * as d3 from 'd3';
 
 
     export default {
