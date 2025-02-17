@@ -77,15 +77,6 @@ body.no-animations .animated-element {
   transition: none !important;
 }
 
-.contact-container {
-  height: 72px;
-  z-index: 999;
-  background: #ffffff;
-  position: sticky;
-  top: 0;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Enhanced shadow */
-  backdrop-filter: blur(8px); /* Optional subtle blur effect */
-}
 
 
 .contact-container {
@@ -95,6 +86,8 @@ body.no-animations .animated-element {
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
   position: sticky;
   top: 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Enhanced shadow */
+  backdrop-filter: blur(8px); /* Optional subtle blur effect */
 }
 
 .contact-content {

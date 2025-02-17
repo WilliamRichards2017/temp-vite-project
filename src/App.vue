@@ -2,7 +2,7 @@
   <div id="app">
     <div id="content-wrap">
 
-      <contact class="sticky-header"/>
+      <contact />
       <router-view/>
     </div>
   </div>
@@ -76,12 +76,5 @@ ul {
   margin: 0 0 0 17px;
 }
 
-.sticky-header {
-  position: -webkit-sticky; /* For Safari */
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background-color: white; /* Adjust as needed */
-}
 
 </style>
