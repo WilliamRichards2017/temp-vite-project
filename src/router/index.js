@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import App from '../App.vue';
 
 // Import your components
 import About from '../components/Home/about.vue';

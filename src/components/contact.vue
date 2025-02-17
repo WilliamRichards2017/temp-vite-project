@@ -1,8 +1,15 @@
 <template>
-    <div class="contact-container">
-      <div class="contact-content">
+  <div class="contact-container">
+    <div class="contact-content">
+      <a @click="$router.push('/')" class="icon-link home-icon" aria-label="Return to home page">
+        <svg class="icon" viewBox="0 0 24 24" role="img">
+          <path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+      </a>
+
+      <div class="right-section">
         <div class="icon-grid">
-            <a href="mailto:richardsw2017@gmail.com" class="icon-link" aria-label="Email William Richards">
+                                <a href="mailto:richardsw2017@gmail.com" class="icon-link" aria-label="Email William Richards">
             <svg class="icon" viewBox="0 0 24 24" role="img" aria-hidden="true">
               <path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/>
             </svg>
@@ -18,65 +25,197 @@
             </svg>
             </a>
         </div>
+        
+        <div class="toggle-container">
+          <label for="toggle-animations" class="toggle-label">
+            <span class="label-text">Disable Animations</span>
+            <div class="toggle-switch">
+              <input type="checkbox" id="toggle-animations" v-model="disableAnimations" @change="toggleAnimations">
+              <span class="slider"></span>
+            </div>
+          </label>
+        </div>
       </div>
     </div>
+  </div>
 </template>
 
+<script>
+import Cookies from 'js-cookie'
 
+export default {
+  name: 'Contact',
+  data() {
+    return {
+      // Default to enabled animations (false) if no cookie exists
+      disableAnimations: Cookies.get('disableAnimations') === 'true'
+    }
+  },
+  methods: {
+    toggleAnimations() {
+      Cookies.set('disableAnimations', this.disableAnimations, { expires: 365 });
+      if (this.disableAnimations) {
+        document.body.classList.add('no-animations');
+      } else {
+        document.body.classList.remove('no-animations');
+      }
+    }
+  },
+  mounted() {
+    // Only disable if cookie exists and is true
+    if (this.disableAnimations) {
+      document.body.classList.add('no-animations');
+    }
+  }
+}
+</script>
 
-<style scoped>
+<style>
+
+body.no-animations .animated-element {
+  animation: none !important;
+  transition: none !important;
+}
+
 .contact-container {
-  height:68px !important;
+  height: 72px;
+  z-index: 999;
   background: #ffffff;
-  /* padding: 2rem 0; */
-  border-top: 1px solid #f0f0f0;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Enhanced shadow */
+  backdrop-filter: blur(8px); /* Optional subtle blur effect */
+}
+
+
+.contact-container {
+  height: 72px;
+  z-index: 999;
+  background: #ffffff;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
 }
 
 .contact-content {
   display: flex;
-  flex-direction: row;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
   max-width: 1200px;
+  height: 100%;
   margin: 0 auto;
-  /* padding: 0 2rem; */
+  padding: 0 2rem;
 }
 
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
 
 .icon-grid {
   display: flex;
-  justify-content: center;
-  gap: 2rem;
-  padding: 1rem 0;
+  gap: 1.5rem;
 }
 
 .icon-link {
-  transition: transform 0.2s ease, color 0.2s ease;
   color: #666;
-  display: flex;
-  /* padding: 0.5rem; */
+  transition: transform 0.2s ease, color 0.2s ease;
+  padding: 8px;
 }
 
 .icon-link:hover {
-  transform: translateY(-3px);
   color: #2a70c2 !important;
+  transform: translateY(-2px);
+}
+
+.toggle-container {
+  margin-bottom: 0 !important;
 }
 
 .icon {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
+}
+
+.toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: #666;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.toggle-label:hover {
+  opacity: 0.8;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 42px;
+  height: 24px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #e0e0e0;
+  transition: .3s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+input:checked + .slider {
+  background-color: #2a70c2;
+}
+
+input:checked + .slider:before {
+  transform: translateX(18px);
 }
 
 @media (max-width: 768px) {
-
-  
-  .icon-grid {
-    gap: 1.5rem;
+  .contact-content {
+    padding: 0 1rem;
   }
   
   .icon {
     width: 28px;
     height: 28px;
   }
+  
+  .toggle-label {
+    font-size: 0.8rem;
+  }
 }
 </style>
+
+
+
+
+
+

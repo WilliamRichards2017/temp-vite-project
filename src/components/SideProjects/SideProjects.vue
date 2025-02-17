@@ -1,6 +1,6 @@
 <template>
   <div class="side-projects">
-    <h1 class="section-title">Projects</h1>
+    <h1 class="section-title">Side Projects</h1>
     <div class="project-grid">
       <router-link 
         v-for="project in projects"
@@ -9,10 +9,10 @@
           name: 'ProjectDetail',
           params: { id: project.id }
         }"
-        :class="['project-card', { 'featured-project': project.featured }]"
+        :class="['project-card', 'animated-element', { 'featured-project': project.featured }]"
         :style="{ backgroundImage: 'url(' + project.preview + ')' }"
       >
-        <div :class="[project.featured ? 'featured-overlay' : 'card-overlay']"></div>
+        <div  class="card-overlay"></div>
         <div class="card-content">
           <div v-if="project.featured" class="featured-badge">Featured Project</div>
           <h3>{{ project.title }}</h3>
@@ -64,7 +64,7 @@ export default {
 .project-card:hover {
   transform: translateY(-5px);
   color: white !important;
-      mask: linear-gradient(-60deg, #000 30%, #0005, #000 70%) right/350% 100%;
+  mask: linear-gradient(-60deg, #000 30%, #0005, #000 70%) right/350% 100%;
   animation: shimmer 2.5s infinite;
 }
 
@@ -80,21 +80,6 @@ export default {
   transition: opacity 0.3s ease;
 }
 
-.featured-overlay {
-    position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, rgba(20, 37, 49, 0.9), rgba(12, 22, 30, 0.7)) !important;
-  opacity: 0.9;
-  transition: opacity 0.3s ease;
-
-}
-
-.shimmer {
-
-}
 
 @keyframes shimmer {
   100% {
@@ -102,8 +87,8 @@ export default {
   }
 }
 
-.project-card:hover .card-overlay {
-  opacity: 0.7;
+.project-card:hover .card-overlay:hover {
+  opacity: 0.5;
 }
 
 .card-content {

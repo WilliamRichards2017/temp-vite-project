@@ -1,9 +1,5 @@
 <template>
   <div class="project-detail">
-    <button @click="$router.push('/')" class="back-button">
-      ← Back to Home
-    </button>
-    
     <component 
       :is="loadedComponent" 
       v-if="loadedComponent"
@@ -47,7 +43,6 @@ methods: {
     }
 
     try {
-      // Handle Webpack's require syntax
       const componentLoader = this.project.component
       this.loadedComponent = (await componentLoader()).default
     } catch (error) {

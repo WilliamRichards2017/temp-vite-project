@@ -34,7 +34,7 @@
       <div class="image-section">
         <img class="profile-image" src="../../assets/Will_Richards.jpg" alt="Will Richards portrait">
         <div class="signature-container">
-          <div class="signature typed-out">William Richards</div>
+            <div :class="{'signature': true, 'typed-out': !disableAnimations, 'animated-element': true}">William Richards</div>
         </div>
       </div>
     </div>
@@ -117,6 +117,7 @@
 
 
     <side-projects/>
+    
 
     </section>
 
@@ -138,12 +139,19 @@
 <script>
 
 import SideProjects from './../SideProjects/SideProjects.vue';
+import Cookies from 'js-cookie'
 
 export default {
   
     components: {
         SideProjects
+    },
+
+        data() {
+    return {
+      disableAnimations: Cookies.get('disableAnimations') === 'true'
     }
+  },
 };
 </script>
 
