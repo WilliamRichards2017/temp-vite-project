@@ -25,7 +25,7 @@
             </svg>
             </a>
         </div>
-        
+
         <div class="toggle-container">
           <label for="toggle-animations" class="toggle-label">
             <span class="label-text">Disable Animations</span>
@@ -112,13 +112,11 @@ body.no-animations .animated-element {
 }
 
 .icon-link {
-  color: #666;
   transition: transform 0.2s ease, color 0.2s ease;
   padding: 8px;
 }
 
 .icon-link:hover {
-  color: #2a70c2 !important;
   transform: translateY(-2px);
 }
 
@@ -195,12 +193,12 @@ input:checked + .slider:before {
   .contact-content {
     padding: 0 1rem;
   }
-  
+
   .icon {
     width: 28px;
     height: 28px;
   }
-  
+
   .toggle-label {
     font-size: 0.8rem;
   }

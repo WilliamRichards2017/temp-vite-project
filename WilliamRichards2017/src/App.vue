@@ -227,11 +227,11 @@ html {
 
 /* High Contrast Mode */
 .high-contrast {
-  --v-theme-background: #000 !important;
+  /* --v-theme-background: #000 !important;
   --v-theme-surface: #111 !important;
   --v-theme-primary: #FFD700 !important;
   --v-theme-on-primary: #000 !important;
-  /* filter: contrast(1.4); */
+  filter: contrast(1.4); */
 }
 
 /* Focus States */

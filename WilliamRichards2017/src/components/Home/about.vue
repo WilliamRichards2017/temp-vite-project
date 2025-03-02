@@ -16,7 +16,7 @@
         </section>
 
         <!-- Current Work -->
-          <div class="current-work">
+          <section class="current-work">
           <h1 class="section-title">Current Work</h1>
             <p class="section-text">
               I currently work as a Senior Front-End Engineer at <a href="https://www.modelop.com" target="_blank" class="link">ModelOp</a>,
@@ -24,7 +24,7 @@
               My work focuses on creating robust solutions that enable large organizations to effectively manage
               and operationalize their AI initiatives at scale.
             </p>
-          </div>
+          </section>
       </div>
 
       <!-- Profile Image -->
@@ -74,7 +74,7 @@
     </section>
 
     <!-- Projects -->
-    <section class="section">
+    <section >
       <h1 class="section-title">Featured Projects</h1>
 
       <div class="project-category">
@@ -171,11 +171,11 @@ export default {
 </script>
 
 <style>
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
-  color: #333;
 }
 
 .top-row {
@@ -188,11 +188,10 @@ export default {
 .section {
   margin-bottom: 3rem;
 }
-
 .section-title {
   font-size: 2rem;
   margin-bottom: 1.5rem;
-  color: #2a2a2a;
+  color: rgb(var(--v-theme-text-primary));
   position: relative;
   padding-bottom: 0.5rem;
 }
@@ -204,17 +203,18 @@ export default {
   left: 0;
   width: 50px;
   height: 3px;
-  background: #2a70c2;
+  background: rgb(var(--v-theme-primary));
 }
+
 
 /* Tagline */
 .tagline {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #2a70c2;
+  color: rgb(var(--v-theme-primary));
   margin-bottom: 1.5rem;
   padding-left: 1rem;
-  border-left: 3px solid #2a70c2;
+  border-left: 3px solid rgb(var(--v-theme-primary));
 }
 
 li > a, ul > li {
@@ -224,14 +224,14 @@ li > a, ul > li {
 /* Text Elements */
 .section-text {
   line-height: 1.6;
-  color: #444;
+  color: rgba(var(--v-theme-text-primary), 0.9);
   margin-bottom: 1.5rem;
   max-width: 75ch;
 }
 
 /* Work Highlights */
 .work-highlights {
-  background: #f8f9fa;
+  background: rgba(var(--v-theme-surface-variant), 0.5);
   border-radius: 8px;
   padding: 1.5rem;
   margin: 1.5rem 0;
@@ -245,7 +245,7 @@ li > a, ul > li {
 
 .highlight-list li {
   padding: 0.75rem 0;
-  border-top: 1px solid #eee;
+  border-top: 1px solid rgba(var(--v-theme-on-surface), 0.12);
 }
 
 
@@ -256,7 +256,7 @@ li > a, ul > li {
 
 .subheading {
   font-size: 1.5rem;
-  color: #2a2a2a;
+  color: rgb(var(--v-theme-text-primary));
   margin: 1.5rem 0;
 }
 
@@ -266,17 +266,16 @@ li > a, ul > li {
   margin: 0;
 }
 
-.project-list li {
+.project-list li, .project-card {
   margin-bottom: 1.5rem;
   padding: 1rem;
-  background: #fff;
-  border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background: rgb(var(--v-theme-surface));
+  box-shadow: 0 2px 4px rgba(var(--v-theme-on-surface), 0.1);  border-radius: 6px;
 }
 
 .project-description {
   margin: 0.5rem 0 0 0;
-  color: #666;
+  color: rgba(var(--v-theme-text-primary), 0.7);
 }
 
 /* Columns */
@@ -291,14 +290,14 @@ li > a, ul > li {
 
 /* Links */
 .link {
-  color: #2a70c2;
+  color: rgb(var(--v-theme-primary));
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s ease;
 }
 
 .link:hover {
-  color: #357abd;
+  color: rgba(var(--v-theme-primary), 0.8);
   text-decoration: underline;
 }
 
@@ -315,7 +314,6 @@ li > a, ul > li {
 .signature {
   font-family: 'Dancing Script', cursive;
   font-size: 2rem;
-  color: #2a2a2a;
   text-align: center;
   margin-top: 1rem;
 }
@@ -376,7 +374,7 @@ li > a, ul > li {
 /* Add these animation styles at the end of your CSS */
 .typed-out {
   overflow: hidden;
-  border-right: 0.15em solid black;
+  border-right: 0.15em solid rgba(var(--v-theme-text-primary), 1);
   white-space: nowrap;
   font-size: 1.6rem;
   width: 0.15em;
@@ -393,7 +391,7 @@ li > a, ul > li {
 
 @keyframes blink-cursor {
   from, to { border-color: transparent; }
-  50% { border-color: black; }
+  50% { border-color: rgba(var(--v-theme-text-primary), 1) }
 }
 
 @keyframes hide-cursor {
@@ -407,7 +405,6 @@ li > a, ul > li {
 
 .signature {
   font-family: 'Dancing Script', cursive;
-  color: #2a2a2a;
   letter-spacing: 2px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
   /* position: relative; */
