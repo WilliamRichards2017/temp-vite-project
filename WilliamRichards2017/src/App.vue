@@ -7,126 +7,116 @@
 
     <v-app-bar>
       <contact />
-      <!-- Accessibility shortcut -->
-      <template v-slot:append>
-        <v-btn
-          icon="mdi-accessibility"
-          variant="text"
-          @click="drawer = true"
-          class="mr-2"
-          aria-label="Quick access to accessibility settings"
-        ></v-btn>
-      </template>
     </v-app-bar>
 
     <v-main>
       <router-view />
 
-      <!-- Dynamic FAB positioning -->
-      <v-fab
-        icon="mdi-human"
-        location="right bottom"
-        :class="{'fab-adjusted': drawer}"
+      <!-- Dynamic FAB -->
+      <v-btn
+        v-if="!showAccessibilityStatement && !showKeyboardHelp"
+        class="fab-button"
         app
-        @click="drawer = !drawer"
+        title="Accessibility Controls"
         aria-label="Open detailed accessibility controls"
-      ></v-fab>
+        @click="drawer = !drawer"
+      >
+        <icon :path="mdiHuman" size="24" />
+      </v-btn>
 
-      <!-- Enhanced drawer -->
+      <!-- Accessibility Drawer -->
       <v-navigation-drawer
         v-model="drawer"
         location="right"
         temporary
-        width="320"
+        width="400"
         class="accessibility-drawer"
       >
-        <v-toolbar color="primary">
+        <v-toolbar color="background">
           <v-toolbar-title class="text-h6">
             Accessibility Controls
           </v-toolbar-title>
-          <v-btn
-            icon="mdi-close"
-            @click="drawer = false"
-            aria-label="Close accessibility controls"
-          ></v-btn>
+          <v-btn @click="drawer = false" aria-label="Close accessibility controls">
+            <icon :path="mdiClose" />
+          </v-btn>
         </v-toolbar>
 
-        <v-list class="py-4">
-          <!-- Motion control -->
-          <v-list-item>
-            <template v-slot:prepend>
-              <v-icon icon="mdi-motion" class="mr-2"></v-icon>
-            </template>
-            <v-list-item-title>Motion Reduction</v-list-item-title>
-            <v-list-item-subtitle>
-              System preference: {{ systemPrefersReducedMotion ? 'Enabled' : 'Disabled' }}
-            </v-list-item-subtitle>
-            <template v-slot:append>
+        <ul class="py-0">
+          <!-- Motion Control -->
+          <li class="v-list-item">
+            <div class="v-list-item__prepend">
+              <icon :path="mdiMotion" class="mr-2" />
+            </div>
+            <div class="v-list-item__content">
+              <div class="v-list-item-title">Motion Reduction</div>
+              <div class="v-list-item-subtitle">
+                System preference: {{ systemPrefersReducedMotion ? 'Enabled' : 'Disabled' }}
+              </div>
+            </div>
+            <div class="v-list-item__append">
               <v-switch
                 v-model="disableAnimations"
                 color="primary"
                 role="switch"
                 :aria-label="`Motion reduction ${disableAnimations ? 'enabled' : 'disabled'}`"
-              ></v-switch>
-            </template>
-          </v-list-item>
+              />
+            </div>
+          </li>
 
           <!-- Text Scaling -->
-          <v-list-item>
-            <template v-slot:prepend>
-              <v-icon icon="mdi-format-size" class="mr-2"></v-icon>
-            </template>
-            <v-list-item-title>Text Scaling</v-list-item-title>
-            <v-list-item-subtitle>
-              Current scale: {{ textScale }}x
-            </v-list-item-subtitle>
-            <template v-slot:append>
-              <v-slider
-                v-model="textScale"
-                min="0.8"
-                max="1.5"
-                step="0.1"
-                style="width: 120px"
-                thumb-label
-                aria-label="Text scaling slider"
-              ></v-slider>
-            </template>
-          </v-list-item>
+          <li class="v-list-item">
+            <div class="v-list-item__prepend">
+              <icon :path="mdiFormatSize" class="mr-2" />
+            </div>
+            <div class="v-list-item__content">
+              <label for="text-scaling-slider">Text Scaling</label>
+              <div class="v-list-item-subtitle">
+                Current scale: {{ textScale }}x
+              </div>
+            </div>
+            <div class="v-list-item__append">
+              <div class="slidecontainer">
+                <input
+                  type="range"
+                  id="text-scaling-slider"
+                  class="slider"
+                  v-model="textScale"
+                  min="0.8"
+                  max="1.5"
+                  step="0.1"
+                  aria-label="Text Scaling"
+                  style="width: 120px"
+                />
+              </div>
+            </div>
+          </li>
 
           <!-- Contrast Control -->
-          <v-list-item>
-            <template v-slot:prepend>
-              <v-icon icon="mdi-contrast-circle" class="mr-2"></v-icon>
-            </template>
-            <v-list-item-title>High Contrast</v-list-item-title>
-            <v-list-item-subtitle>
-              {{ highContrast ? 'Enabled' : 'System default' }}
-            </v-list-item-subtitle>
-            <template v-slot:append>
+          <li class="v-list-item">
+            <div class="v-list-item__prepend">
+              <icon :path="mdiContrastCircle" class="mr-2" />
+            </div>
+            <div class="v-list-item__content">
+              <div class="v-list-item-title">High Contrast</div>
+              <div class="v-list-item-subtitle">
+                {{ highContrast ? 'Enabled' : 'System default' }}
+              </div>
+            </div>
+            <div class="v-list-item__append">
               <v-switch
                 v-model="highContrast"
                 color="primary"
                 role="switch"
                 :aria-label="`High contrast mode ${highContrast ? 'enabled' : 'disabled'}`"
-              ></v-switch>
-            </template>
-          </v-list-item>
-
-          <!-- Keyboard Navigation Helper -->
-          <v-list-item @click="showKeyboardHelp = true">
-            <template v-slot:prepend>
-              <v-icon icon="mdi-keyboard" class="mr-2"></v-icon>
-            </template>
-            <v-list-item-title>Keyboard Shortcuts</v-list-item-title>
-            <v-list-item-subtitle>View available commands</v-list-item-subtitle>
-          </v-list-item>
-        </v-list>
+              />
+            </div>
+          </li>
+        </ul>
 
         <!-- Drawer Footer -->
         <div class="drawer-footer pa-4">
-          <v-divider class="mb-4"></v-divider>
           <p class="text-caption">
-            <v-icon icon="mdi-information" size="small" class="mr-1"></v-icon>
+            <icon :path="mdiInformation" size="16" class="mr-1" />
             Settings are saved for future visits.
             <a
               href="/accessibility-statement"
@@ -140,22 +130,46 @@
         </div>
       </v-navigation-drawer>
 
-      <!-- Accessibility Statement Dialog -->
+      <!-- Dialogs -->
       <v-dialog v-model="showAccessibilityStatement" max-width="600">
         <accessibility-statement @close="showAccessibilityStatement = false" />
-      </v-dialog>
-
-      <!-- Keyboard Help Dialog -->
-      <v-dialog v-model="showKeyboardHelp" max-width="600">
-        <keyboard-help @close="showKeyboardHelp = false" />
       </v-dialog>
     </v-main>
   </v-app>
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, watch, onMounted } from 'vue';
+
+import { ref, watch, onMounted, defineComponent } from 'vue';
 import Cookies from 'js-cookie';
+
+import {
+  mdiHuman,
+  mdiClose,
+  mdiMotion,
+  mdiFormatSize,
+  mdiContrastCircle,
+  mdiInformation
+} from '@mdi/js';
+
+const Icon = defineComponent({
+  props: {
+    path: { type: String, required: true },
+    size: { type: [Number, String], default: 24 },
+    color: { type: String, default: 'currentColor' }
+  },
+  setup(props) {
+    return () => h('svg', {
+      viewBox: "0 0 24 24",
+      width: props.size,
+      height: props.size,
+      fill: props.color,
+      class: "inline-block align-middle"
+    }, [
+      h('path', { d: props.path })
+    ]);
+  }
+});
 
 // Motion Control
 const systemPrefersReducedMotion = ref(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
@@ -189,6 +203,7 @@ watch([disableAnimations, textScale, highContrast], ([motion, scale, contrast]) 
 // Initial Setup
 onMounted(() => {
   document.body.classList.toggle("no-animations", disableAnimations.value);
+
   updateTextScale(textScale.value);
   updateContrast(highContrast.value);
 
@@ -209,18 +224,49 @@ const drawer = ref(false);
   --text-scale: 1;
 }
 
+.v-list-item-subtitle {
+  -webkit-line-clamp: unset !important;
+  color: rgba(var(--v-theme-text-secondary));
+  font-size: 0.875rem
+}
+
 html {
   font-size: calc(1rem * var(--text-scale));
 }
 
 /* FAB Positioning Fix */
-.v-btn--fab.fab-adjusted {
-  transform: translateX(calc(-320px + -2rem)) !important;
+.fab-button {
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+  z-index: 1000;
+  border-radius: 50%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  background-color: var(--v-theme-primary);
+  color: var(--v-theme-on-primary);
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: transform 0.3s ease;
+  padding: 8px;
+}
+
+.fab-button:hover {
+  background-color: var(--v-theme-primary-darken-1);
+}
+
+.fab-button:active {
+  background-color: var(--v-theme-primary-darken-2);
+}
+
+.fab-adjusted {
+  transform: translateX(calc(-320px + -2rem)) !important;
 }
 
 @media (max-width: 960px) {
-  .v-btn--fab.fab-adjusted {
+  .fab-adjusted {
     transform: translateY(calc(-100% - 2rem)) !important;
   }
 }
@@ -256,15 +302,71 @@ input:focus-visible {
 }
 
 /* Drawer Padding Fix */
-.accessibility-drawer .v-list {
+.accessibility-drawer ul {
   padding-bottom: 96px; /* Space for mobile nav bars */
 }
 
 .drawer-footer {
-  position: absolute;
-  bottom: 0;
   width: 100%;
   background: rgba(var(--v-theme-background), 0.9);
   backdrop-filter: blur(4px);
+  padding: 16px;
 }
+
+/* List Item Styles */
+.v-list-item {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.v-list-item__prepend {
+  margin-right: 16px;
+}
+
+.v-list-item__content {
+  flex: 1;
+}
+
+.v-list-item__append {
+  margin-left: 16px;
+}
+
+.slidecontainer {
+  width: 100%; /* Width of the outside container */
+}
+
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: rgba(var(--v-theme-primary));
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #04AA6D;
+  cursor: pointer;
+}
+
+
 </style>

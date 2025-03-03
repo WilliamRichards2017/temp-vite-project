@@ -16,51 +16,39 @@
         </section>
 
         <!-- Current Work -->
-          <section class="current-work">
+        <section class="current-work">
           <h1 class="section-title">Current Work</h1>
-            <p class="section-text">
-              I currently work as a Senior Front-End Engineer at <a href="https://www.modelop.com" target="_blank" class="link">ModelOp</a>,
-              an enterprise AI governance platform trusted by Fortune 100 companies and regulatory bodies.
-              My work focuses on creating robust solutions that enable large organizations to effectively manage
-              and operationalize their AI initiatives at scale.
-            </p>
-          </section>
+          <p class="section-text">
+            I currently work as a Senior Front-End Engineer at <a href="https://www.modelop.com" target="_blank" class="link">ModelOp</a>,
+            an enterprise AI governance platform trusted by Fortune 100 companies and regulatory bodies.
+            My work focuses on creating robust solutions that enable large organizations to effectively manage
+            and operationalize their AI initiatives at scale.
+          </p>
+        </section>
       </div>
 
       <!-- Profile Image -->
       <div class="image-section">
         <v-img class="profile-image" src="../../assets/Will_Richards.jpg" alt="Will Richards portrait"/>
-        <div class="signature-container">
-            <div :class="{'signature': true, 'typed-out': !disableAnimations, 'animated-element': true}">William Richards</div>
-        </div>
+        <span id="typeit-signature"></span>
       </div>
     </div>
 
-                <v-card class="work-highlights px-5 py-5">
-                  <h2>Key Contributions</h2>
-                  <v-list dense>
-                    <v-list-item>
-                      <v-list-item-content>
-                        <v-list-item-title>Own and lead development of core application workflows including model lifecycle management, compliance reporting, and AI Use Case pages</v-list-item-title>
-                      </v-list-item-content>
-                      <v-divider></v-divider>
-                    </v-list-item>
-                    <v-list-item>
-                      <v-list-item-content>
-                        <v-list-item-title>Collaborate directly with Fortune 100 executive teams to solve complex integration challenges and unique business needs</v-list-item-title>
-                      </v-list-item-content>
-                                            <v-divider></v-divider>
-
-                    </v-list-item>
-                    <v-list-item>
-                      <v-list-item-content>
-                        <v-list-item-title>Championed WCAG 2.2 AA compliance across entire platform</v-list-item-title>
-                      </v-list-item-content>
-                                            <v-divider></v-divider>
-
-                    </v-list-item>
-                  </v-list>
-                </v-card>
+    <!-- Key Contributions -->
+    <v-card class="work-highlights px-5 py-5">
+      <h2 class="subheading">Key Contributions</h2>
+      <ul class="highlight-list">
+        <li>
+          Own and lead development of core application workflows including model lifecycle management, compliance reporting, and AI Use Case pages
+        </li>
+        <li>
+          Collaborate directly with Fortune 100 executive teams to solve complex integration challenges and unique business needs
+        </li>
+        <li>
+          Championed WCAG 2.2 AA compliance across entire platform
+        </li>
+      </ul>
+    </v-card>
 
     <!-- Previous Experience -->
     <section class="section">
@@ -74,16 +62,15 @@
     </section>
 
     <!-- Projects -->
-    <section >
-      <h1 class="section-title">Featured Projects</h1>
+    <section>
+      <h1 class="section-title">Projects</h1>
 
       <div class="project-category">
         <h2 class="subheading">Web Applications</h2>
         <ul class="project-list">
-
           <li>
             <a href="https://pedigree.iobio.io" target="_blank" class="link">pedigree.iobio.io</a>
-            <p class="project-description">Author of pedigree visualization with interactive genotype/phenotype regression analysis.</p>
+            <p class="project-description">Author of pedigree visualization with interactive genotype / phenotype regression analysis.</p>
           </li>
           <li>
             <a href="https://gene.iobio.io" target="_blank" class="link">gene.iobio.io</a>
@@ -128,12 +115,7 @@
     </section>
 
     <section class="section">
-
-
-
-    <side-projects/>
-
-
+      <side-projects/>
     </section>
 
     <!-- Education -->
@@ -145,32 +127,79 @@
         with a degree in Computer Science in July 2017.
       </p>
     </section>
-
-
   </div>
 </template>
 
-
 <script>
-
 import SideProjects from './../SideProjects/SideProjects.vue';
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
+import TypeIt from 'typeit';
 
 export default {
-
-    components: {
-        SideProjects
-    },
-
-        data() {
+  components: {
+    SideProjects
+  },
+  mounted() {
+    new TypeIt('#typeit-signature', {
+      lifeLike: false,
+      speed: 0,
+      afterComplete: function (instance) {
+        instance.destroy();
+      }
+    })
+    .delete(12, { instant: true })
+    .type("W")
+    .pause(100)
+    .pause(269)
+    .type("i")
+    .pause(95)
+    .type("l")
+    .pause(256)
+    .type("l")
+    .pause(165)
+    .type("i")
+    .pause(194)
+    .type("a")
+    .pause(118)
+    .type("m")
+    .pause(594)
+    .delete(1)
+    .pause(140)
+    .delete(1)
+    .pause(143)
+    .delete(1)
+    .pause(417)
+    .type(" ")
+    .pause(230)
+    .type("R")
+    .pause(127)
+    .type("i")
+    .pause(131)
+    .type("c")
+    .pause(111)
+    .type("h")
+    .pause(79)
+    .type("a")
+    .pause(80)
+    .type("r")
+    .pause(187)
+    .type("d")
+    .pause(67)
+    .type("s")
+    .go();
+  },
+  data() {
     return {
       disableAnimations: Cookies.get('disableAnimations') === 'true'
     }
-  },
+  }
 };
 </script>
 
 <style>
+#typeit-signature {
+  display: inline-block;
+}
 
 .container {
   max-width: 1200px;
@@ -188,7 +217,8 @@ export default {
 .section {
   margin-bottom: 3rem;
 }
-.section-title {
+
+h1.section-title {
   font-size: 2rem;
   margin-bottom: 1.5rem;
   color: rgb(var(--v-theme-text-primary));
@@ -206,6 +236,23 @@ export default {
   background: rgb(var(--v-theme-primary));
 }
 
+h2.subheading {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: rgb(var(--v-theme-text-secondary));
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.subheading::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: rgb(var(--v-theme-secondary));
+}
 
 /* Tagline */
 .tagline {
@@ -218,13 +265,13 @@ export default {
 }
 
 li > a, ul > li {
-  font-size: 1.2em
+  font-size: 1.2em;
 }
 
 /* Text Elements */
 .section-text {
   line-height: 1.6;
-  color: rgba(var(--v-theme-text-primary), 0.9);
+  color: rgba(var(--v-theme-text-secondary));
   margin-bottom: 1.5rem;
   max-width: 75ch;
 }
@@ -244,10 +291,11 @@ li > a, ul > li {
 }
 
 .highlight-list li {
+    color: rgb(var(--v-theme-text-secondary));
+
   padding: 0.75rem 0;
   border-top: 1px solid rgba(var(--v-theme-on-surface), 0.12);
 }
-
 
 /* Projects */
 .project-category {
@@ -270,7 +318,8 @@ li > a, ul > li {
   margin-bottom: 1.5rem;
   padding: 1rem;
   background: rgb(var(--v-theme-surface));
-  box-shadow: 0 2px 4px rgba(var(--v-theme-on-surface), 0.1);  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(var(--v-theme-on-surface), 0.1);
+  border-radius: 6px;
 }
 
 .project-description {
@@ -310,19 +359,11 @@ li > a, ul > li {
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-/* Signature */
-.signature {
-  font-family: 'Dancing Script', cursive;
-  font-size: 2rem;
-  text-align: center;
-  margin-top: 1rem;
-}
-
 .image-section {
   display: flex;
   flex-direction: column;
-      align-items: center;
-
+  align-items: center;
+  min-width: 20vw;
 }
 
 /* Responsive Design */
@@ -343,7 +384,6 @@ li > a, ul > li {
     max-width: 250px;
   }
 
-
   .image-section,
   .content-section {
     width: 100% !important;
@@ -361,27 +401,10 @@ li > a, ul > li {
   .tagline {
     font-size: 1.1rem;
   }
-    .signature {
-    font-size: 1.8rem;
-  }
+
   .typed-out {
     font-size: 1.4rem;
   }
-}
-
-
-
-/* Add these animation styles at the end of your CSS */
-.typed-out {
-  overflow: hidden;
-  border-right: 0.15em solid rgba(var(--v-theme-text-primary), 1);
-  white-space: nowrap;
-  font-size: 1.6rem;
-  width: 0.15em;
-  animation:
-    typing 2s steps(32, end) forwards,
-    blink-cursor 0.7s step-end infinite,
-    hide-cursor 5s forwards;
 }
 
 @keyframes typing {
@@ -391,28 +414,10 @@ li > a, ul > li {
 
 @keyframes blink-cursor {
   from, to { border-color: transparent; }
-  50% { border-color: rgba(var(--v-theme-text-primary), 1) }
+  50% { border-color: rgba(var(--v-theme-text-primary), 1); }
 }
 
 @keyframes hide-cursor {
   to { border-right-color: transparent; }
 }
-
-.signature-container {
-  display: inline-block;
-  width: fit-content;
-}
-
-.signature {
-  font-family: 'Dancing Script', cursive;
-  letter-spacing: 2px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-  /* position: relative; */
-  display: inline-block;
-  /* padding: 0 15px; */
-  opacity: 0.9;
-  font-size: 2.2rem;
-}
-
 </style>
-

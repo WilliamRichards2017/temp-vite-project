@@ -1,8 +1,8 @@
 <template>
   <div class="side-projects">
-    <h1 class="section-title">Side Projects</h1>
+    <h2 class="subheading">Featured Side Project</h2>
     <div class="project-grid">
-      <router-link 
+      <router-link
         v-for="project in projects"
         :key="project.id"
         :to="{
@@ -10,12 +10,11 @@
           params: { id: project.id }
         }"
         :class="['project-card', 'animated-element', { 'featured-project': project.featured }]"
-        :style="{ backgroundImage: 'url(' + project.preview + ')' }"
+        :style="{ backgroundImage: 'url(' + project.preview + ')', backgroundSize: 'cover', backgroundPosition: 'center' }"
       >
         <div  class="card-overlay"></div>
         <div class="card-content">
-          <div v-if="project.featured" class="featured-badge">Featured Project</div>
-          <h3>{{ project.title }}</h3>
+          <h1>{{ project.title }}</h1>
           <p>{{ project.description }}</p>
           <div v-if="project.featured" class="featured-highlights">
             <div v-for="highlight in project.highlights" :key="highlight" class="highlight-item">{{ highlight }}</div>
@@ -96,7 +95,7 @@ export default {
   position: relative;
   z-index: 1;
   padding: 1.5rem;
-  height: calc(100% - 2.5rem);
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -121,7 +120,7 @@ export default {
   .project-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .project-card {
     min-height: 250px;
   }
@@ -189,4 +188,6 @@ export default {
     padding: 0.3rem 0.8rem;
   }
 }
+
+
 </style>
