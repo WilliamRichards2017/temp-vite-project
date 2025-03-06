@@ -26,7 +26,6 @@ const darkTheme = {
     "info": "#2196F3",
     "success": "#4CAF50",
     "warning": "#FB8C00",
-    "custom-theme": "#FFD700" // Moon color
   }
 };
 
@@ -43,7 +42,6 @@ const lightTheme = {
     "info": "#2196F3",
     "success": "#4CAF50",
     "warning": "#FFC107",
-    "custom-theme": "#FFA500" // Sun color
   }
 };
 

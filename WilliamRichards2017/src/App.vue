@@ -21,7 +21,7 @@
         aria-label="Open detailed accessibility controls"
         @click="drawer = !drawer"
       >
-        <icon :path="mdiHuman" size="24" />
+        <icon :path="mdiHuman" size="32" />
       </v-btn>
 
       <!-- Accessibility Drawer -->
@@ -242,15 +242,14 @@ html {
   z-index: 1000;
   border-radius: 50%;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  background-color: var(--v-theme-primary);
-  color: var(--v-theme-on-primary);
-  width: 56px;
-  height: 56px;
-  display: flex;
+  background-color: rgb(var(--v-theme-surface));
+  color: rgb(var(--v-theme-text-primary));
+  height: 64px !important;
   align-items: center;
   justify-content: center;
   transition: transform 0.3s ease;
   padding: 8px;
+  backdrop-filter: blur(4px);
 }
 
 .fab-button:hover {

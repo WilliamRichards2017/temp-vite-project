@@ -29,7 +29,7 @@
 
       <!-- Profile Image -->
       <div class="image-section">
-        <v-img class="profile-image" src="../../assets/Will_Richards.jpg" alt="Will Richards portrait"/>
+        <v-img class="profile-image" src="../../assets/Will_Richards.webp" alt="Will Richards portrait"/>
         <span id="typeit-signature"></span>
       </div>
     </div>
