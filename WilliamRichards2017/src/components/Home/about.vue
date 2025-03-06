@@ -308,24 +308,7 @@ li > a, ul > li {
   margin: 1.5rem 0;
 }
 
-.project-list {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
 
-.project-list li, .project-card {
-  margin-bottom: 1.5rem;
-  padding: 1rem;
-  background: rgb(var(--v-theme-surface));
-  box-shadow: 0 2px 4px rgba(var(--v-theme-on-surface), 0.1);
-  border-radius: 6px;
-}
-
-.project-description {
-  margin: 0.5rem 0 0 0;
-  color: rgba(var(--v-theme-text-primary), 0.7);
-}
 
 /* Columns */
 .columns {

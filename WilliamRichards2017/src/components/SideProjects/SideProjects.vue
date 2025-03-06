@@ -12,7 +12,7 @@
         :class="['project-card', 'animated-element', { 'featured-project': project.featured }]"
         :style="{ backgroundImage: 'url(' + project.preview + ')', backgroundSize: 'cover', backgroundPosition: 'center' }"
       >
-        <div  class="card-overlay"></div>
+        <div class="card-overlay"></div>
         <div class="card-content">
           <h1>{{ project.title }}</h1>
           <p>{{ project.description }}</p>
@@ -37,7 +37,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
@@ -49,7 +49,7 @@ export default {
   position: relative;
   display: block;
   text-decoration: none;
-  color: white;
+  color: rgb(var(--v-theme-text-primary));
   border-radius: 8px;
   overflow: hidden;
   min-height: 300px;
@@ -57,17 +57,18 @@ export default {
   background-position: center;
   transition: transform 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border: 1px solid black;
+  border: 1px solid rgb(var(--v-theme-card-border));
 }
 
 .project-card:hover {
   transform: translateY(-5px);
-  color: white !important;
-  mask: linear-gradient(-60deg, #000 30%, #0005, #000 70%) right/350% 100%;
+  color: rgb(var(--v-theme-text-primary)) !important;
+  mask: linear-gradient(-60deg, rgb(var(--v-theme-text-primary)) 30%,
+          rgba(var(--v-theme-text-primary), 0.2),
+          rgb(var(--v-theme-text-primary)) 70%) right/350% 100%;
   animation: shimmer 2.5s infinite;
-  opacity: 0.7;
+  opacity: 0.9;
 }
-
 
 .card-overlay {
   position: absolute;
@@ -75,20 +76,17 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, rgba(20, 37, 49, 0.9), rgba(12, 22, 30, 0.7)) !important;
+  background: linear-gradient(
+    45deg,
+    rgba(var(--v-theme-overlay-start), 0.9),
+    rgba(var(--v-theme-overlay-end), 0.7)
+  ) !important;
   opacity: 0.9;
   transition: opacity 0.3s ease;
 }
 
-
-@keyframes shimmer {
-  100% {
-    mask-position: left
-  }
-}
-
 .project-card:hover .card-overlay:hover {
-  opacity: 0.5;
+  opacity: 0.7;
 }
 
 .card-content {
@@ -99,21 +97,30 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  color: white;
+  color: rgb(var(--v-theme-text-primary));
 }
 
-.card-content h3 {
+.card-content h1 {
   margin: 0 0 0.5rem 0;
   font-size: 1.5rem;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  text-shadow: 1px 1px 3px rgba(var(--v-theme-text-shadow), 0.5);
 }
 
 .card-content p {
   margin: 0;
-  font-size: 1rem;
+  font-size: 1.3rem;
+  font-weight: 400;
   line-height: 1.4;
   opacity: 0.9;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  text-shadow: 2px 2px 4px rgba(var(--v-theme-text-shadow), 0.7);
+}
+
+.highlight-item {
+  background: rgba(var(--v-theme-highlight-bg), 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(var(--v-theme-primary));
 }
 
 @media (max-width: 768px) {
@@ -130,24 +137,7 @@ export default {
   grid-column: 1 / -1 !important;
   min-height: 400px;
   animation: subtle-pulse 6s infinite;
-    border: 2px solid rgba(255, 212, 82) !important;
-
-}
-
-
-
-
-.featured-badge {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: rgba(255, 212, 82, 0.9);
-  color: #1a1a1a;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  text-shadow: none;
+  border: 2px solid rgb(var(--v-theme-primary)) !important;
 }
 
 .featured-highlights {
@@ -155,14 +145,6 @@ export default {
   gap: 1rem;
   margin-top: 1rem;
   flex-wrap: wrap;
-}
-
-.highlight-item {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 @keyframes subtle-pulse {
@@ -188,6 +170,4 @@ export default {
     padding: 0.3rem 0.8rem;
   }
 }
-
-
 </style>
