@@ -297,6 +297,10 @@ li > a, ul > li {
   border-top: 1px solid rgba(var(--v-theme-on-surface), 0.12);
 }
 
+  .project-list {
+    margin-left: 1em;
+  }
+
 /* Projects */
 .project-category {
   margin: 2rem 0;

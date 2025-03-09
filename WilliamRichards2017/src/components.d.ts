@@ -8,7 +8,10 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     About: typeof import('./components/Home/about.vue')['default']
-    Contact: typeof import('./components/Contact.vue')['default']
+    AccesibilityStatement: typeof import('./components/AccesibilityStatement.vue')['default']
+    AccessibilityStatement: typeof import('./components/AccessibilityStatement.vue')['default']
+    Footer: typeof import('./components/Footer.vue')['default']
+    Header: typeof import('./components/Header.vue')['default']
     Home: typeof import('./components/Home/home.vue')['default']
     Icon: typeof import('./components/Icon.vue')['default']
     ProjectDetail: typeof import('./components/SideProjects/ProjectDetail.vue')['default']

@@ -1,4 +1,3 @@
-<!-- AccessibilityStatement.vue -->
 <template>
   <v-card>
     <v-toolbar color="primary">
@@ -72,10 +71,6 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue';
-
-defineOptions({
-  name: 'AccessibilityStatement'
-});
 
 const emit = defineEmits(['close']);
 

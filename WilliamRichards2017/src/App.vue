@@ -5,9 +5,7 @@
       This portfolio implements WAI-ARIA standards and offers multiple accessibility controls.
     </div>
 
-    <v-app-bar>
-      <contact />
-    </v-app-bar>
+    <Header />
 
     <v-main>
       <router-view />
@@ -41,104 +39,110 @@
           </v-btn>
         </v-toolbar>
 
-        <ul class="py-0">
-          <!-- Motion Control -->
-          <li class="v-list-item">
-            <div class="v-list-item__prepend">
-              <icon :path="mdiMotion" class="mr-2" />
-            </div>
-            <div class="v-list-item__content">
-              <div class="v-list-item-title">Motion Reduction</div>
-              <div class="v-list-item-subtitle">
-                System preference: {{ systemPrefersReducedMotion ? 'Enabled' : 'Disabled' }}
+          <ul class="py-0">
+            <!-- Motion Control -->
+            <li class="v-list-item">
+              <div class="v-list-item__prepend">
+                <icon :path="mdiMotion" class="mr-2" />
               </div>
-            </div>
-            <div class="v-list-item__append">
-              <v-switch
-                v-model="disableAnimations"
-                color="primary"
-                role="switch"
-                :aria-label="`Motion reduction ${disableAnimations ? 'enabled' : 'disabled'}`"
-              />
-            </div>
-          </li>
-
-          <!-- Text Scaling -->
-          <li class="v-list-item">
-            <div class="v-list-item__prepend">
-              <icon :path="mdiFormatSize" class="mr-2" />
-            </div>
-            <div class="v-list-item__content">
-              <label for="text-scaling-slider">Text Scaling</label>
-              <div class="v-list-item-subtitle">
-                Current scale: {{ textScale }}x
+              <div class="v-list-item__content">
+                <div class="v-list-item-title">Motion Reduction</div>
+                <div class="v-list-item-subtitle">
+                  System preference: {{ systemPrefersReducedMotion ? 'Enabled' : 'Disabled' }}
+                </div>
               </div>
-            </div>
-            <div class="v-list-item__append">
-              <div class="slidecontainer">
-                <input
-                  type="range"
-                  id="text-scaling-slider"
-                  class="slider"
-                  v-model="textScale"
-                  min="0.8"
-                  max="1.5"
-                  step="0.1"
-                  aria-label="Text Scaling"
-                  style="width: 120px"
+              <div class="v-list-item__append">
+                <v-switch
+                  v-model="disableAnimations"
+                  color="primary"
+                  role="switch"
+                  :aria-label="`Motion reduction ${disableAnimations ? 'enabled' : 'disabled'}`"
                 />
               </div>
-            </div>
-          </li>
+            </li>
 
-          <!-- Contrast Control -->
-          <li class="v-list-item">
-            <div class="v-list-item__prepend">
-              <icon :path="mdiContrastCircle" class="mr-2" />
-            </div>
-            <div class="v-list-item__content">
-              <div class="v-list-item-title">High Contrast</div>
-              <div class="v-list-item-subtitle">
-                {{ highContrast ? 'Enabled' : 'System default' }}
+            <!-- Text Scaling -->
+            <li class="v-list-item">
+              <div class="v-list-item__prepend">
+                <icon :path="mdiFormatSize" class="mr-2" />
               </div>
-            </div>
-            <div class="v-list-item__append">
-              <v-switch
-                v-model="highContrast"
-                color="primary"
-                role="switch"
-                :aria-label="`High contrast mode ${highContrast ? 'enabled' : 'disabled'}`"
-              />
-            </div>
-          </li>
-        </ul>
+              <div class="v-list-item__content">
+                <label for="text-scaling-slider">Text Scaling</label>
+                <div class="v-list-item-subtitle">
+                  Current scale: {{ textScale }}x
+                </div>
+              </div>
+              <div class="v-list-item__append">
+                <div class="slidecontainer">
+                  <input
+                    type="range"
+                    id="text-scaling-slider"
+                    class="slider"
+                    v-model="textScale"
+                    min="0.8"
+                    max="1.5"
+                    step="0.1"
+                    aria-label="Text Scaling"
+                    style="width: 120px"
+                  />
+                </div>
+              </div>
+            </li>
 
-        <!-- Drawer Footer -->
-        <div class="drawer-footer pa-4">
-          <p class="text-caption">
-            <icon :path="mdiInformation" size="16" class="mr-1" />
-            Settings are saved for future visits.
-            <a
-              href="/accessibility-statement"
-              class="text-primary"
-              @click.prevent="showAccessibilityStatement = true"
-              aria-label="Read our full accessibility statement"
-            >
-              Read full statement
-            </a>
-          </p>
-        </div>
-      </v-navigation-drawer>
+            <!-- Contrast Control -->
+            <li class="v-list-item">
+              <div class="v-list-item__prepend">
+                <icon :path="mdiContrastCircle" class="mr-2" />
+              </div>
+              <div class="v-list-item__content">
+                <div class="v-list-item-title">High Contrast</div>
+                <div class="v-list-item-subtitle">
+                  {{ highContrast ? 'Enabled' : 'System default' }}
+                </div>
+              </div>
+              <div class="v-list-item__append">
+                <v-switch
+                  v-model="highContrast"
+                  color="primary"
+                  role="switch"
+                  :aria-label="`High contrast mode ${highContrast ? 'enabled' : 'disabled'}`"
+                />
+              </div>
+            </li>
+          </ul>
+
+          <!-- Drawer Footer -->
+
+          <template #append>
+          <div class="drawer-footer pa-4">
+            <p class="text-caption">
+              <icon :path="mdiInformation" size="16" class="mr-1" />
+              Settings are saved for future visits.
+              <a
+                class="text-primary"
+                @click.prevent="showAccessibilityStatement = true"
+                aria-label="Read our full accessibility statement"
+              >
+                Read full statement
+              </a>
+            </p>
+          </div>
+          </template>
+\      </v-navigation-drawer>
 
       <!-- Dialogs -->
       <v-dialog v-model="showAccessibilityStatement" max-width="600">
-        <accessibility-statement @close="showAccessibilityStatement = false" />
+        <AccessibilityStatement @close="showAccessibilityStatement = false" />
       </v-dialog>
     </v-main>
+
+    <Footer />
   </v-app>
 </template>
 
 <script lang="ts" setup>
+
+
 
 import { ref, watch, onMounted, defineComponent } from 'vue';
 import Cookies from 'js-cookie';
@@ -193,7 +197,7 @@ const updateContrast = (value: boolean) => {
 const showAccessibilityStatement = ref(false);
 const showKeyboardHelp = ref(false);
 
-// Watchers
+//
 watch([disableAnimations, textScale, highContrast], ([motion, scale, contrast]) => {
   document.body.classList.toggle("no-animations", motion);
   updateTextScale(scale);
@@ -214,12 +218,10 @@ onMounted(() => {
   });
 });
 
-// FAB/Drawer Fix
 const drawer = ref(false);
 </script>
 
 <style>
-/* Base Scaling */
 :root {
   --text-scale: 1;
 }
@@ -253,8 +255,9 @@ html {
 }
 
 .fab-button:hover {
-  background-color: var(--v-theme-primary-darken-1);
+    color: rgb(var(--v-theme-primary)) !important;
 }
+
 
 .fab-button:active {
   background-color: var(--v-theme-primary-darken-2);
@@ -279,6 +282,40 @@ html {
   filter: contrast(1.4); */
 }
 
+.icon-link {
+  color: rgba(var(--v-theme-text-secondary), var(--v-medium-emphasis-opacity));
+  transition: transform 0.2s ease, color 0.2s ease;
+  padding: 8px;
+}
+
+.icon-link:hover {
+  color: rgb(var(--v-theme-primary)) !important;
+    background-color: rgb(var(--v-theme-primary), 0.2);
+
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
+.toggle-container {
+  margin-bottom: 0 !important;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+}
+
+@media (max-width: 768px) {
+  .contact-content {
+    padding: 0 1rem;
+  }
+
+  .icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
 /* Focus States */
 button:focus-visible,
 a:focus-visible,
@@ -300,9 +337,8 @@ input:focus-visible {
   border: 0;
 }
 
-/* Drawer Padding Fix */
 .accessibility-drawer ul {
-  padding-bottom: 96px; /* Space for mobile nav bars */
+  padding-bottom: 96px;
 }
 
 .drawer-footer {
@@ -333,7 +369,7 @@ input:focus-visible {
 }
 
 .slidecontainer {
-  width: 100%; /* Width of the outside container */
+  width: 100%;
 }
 
 

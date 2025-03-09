@@ -6,10 +6,7 @@
 
 // Composables
 import { createRouter, createWebHistory } from 'vue-router/auto'
-import { setupLayouts } from 'virtual:generated-layouts'
 
-import About from '../components/Home/about.vue';
-import Contact from '../components/contact.vue';
 import ProjectDetail from '../components/SideProjects/projectDetail.vue';
 import Home from '../components/Home/home.vue';
 // Define your routes
@@ -22,16 +19,8 @@ const routes = [
     component: Home,
   },
 
-  {
-    path: '/about',
-    name: 'About',
-    component: About,
-  },
-  {
-    path: '/contact',
-    name: 'Contact',
-    component: Contact,
-  },
+
+
   {
     path: '/project/:id', // Dynamic route parameter
     name: 'ProjectDetail',
